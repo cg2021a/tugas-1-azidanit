@@ -4,6 +4,8 @@ tugas-1-azidanit created by GitHub Classroom
 Achmad Zidan Akbar
 05111840000005
 
+Preview : https://cg2021a.github.io/tugas-1-azidanit/
+
 Nama Benda : Atmel AT89S52-24PU
 
 Depan : 
