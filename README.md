@@ -5,7 +5,8 @@ Achmad Zidan Akbar
 05111840000005
 
 Preview : https://cg2021a.github.io/tugas-1-azidanit/
-Preview : Tugas Three JS http://azidan.digital/tugas_1_three_js/
+
+Preview Tugas Three JS : http://azidan.digital/tugas_1_three_js/
 
 Nama Benda : Atmel AT89S52-24PU
 
