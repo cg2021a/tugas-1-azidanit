@@ -56,7 +56,8 @@ function main() {
     return material;
   }
 
-  function addSolidGeometry(x, y, geometry) {
+
+  function addSolidGeometry(x, y, geometry, _material) {
     const mesh = new THREE.Mesh(geometry, createMaterial());
     addObject(x, y, mesh);
   }
@@ -80,19 +81,24 @@ function main() {
       geometry.boundingBox.getCenter(mesh.position).multiplyScalar(-1);
       const parent = new THREE.Object3D();
       parent.add(mesh);
-      
-      geometry = new THREE.WireframeGeometry(new THREE.TorusKnotBufferGeometry(1, .5, 128, 60, 2, 3));
+      addObject(0, 0, parent);
+
+      geometry = new THREE.WireframeGeometry(new THREE.TorusKnotBufferGeometry(2.5, 0.8, 128, 50, 2, 3));
       addSolidGeometry(0,  .7, geometry);
 
-      geometry = new THREE.OctahedronBufferGeometry(1.5);
-      addSolidGeometry(-.7,  0, geometry);
-      geometry = new THREE.OctahedronBufferGeometry(1.5);
-      addSolidGeometry(.7,  0,  geometry);
+      geometry = new THREE.OctahedronBufferGeometry(4);
+      addSolidGeometry(-1.7,  0, geometry);
+
+      geometry = new THREE.BoxGeometry(4,4,7,1,1,1);
+      // addSolidGeometry(1.7,  0,  geometry);
+      var material = new THREE.MeshNormalMaterial( {color: 0xffff00} );
+      var boxx = new THREE.Mesh( geometry, material );
+      addObject(1.7,0, boxx);
+
       geometry = new THREE.SphereGeometry( 2, 12, 12 );
-      var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+      material = new THREE.MeshLambertMaterial( {color: 0xffff00} );
       var sphere = new THREE.Mesh( geometry, material );
       addObject(0,-.8, sphere);
-      addObject(0, 0, parent);
     });
   }
 
@@ -132,14 +138,40 @@ function main() {
   document.getElementById("light1").addEventListener("click", function() {
     console.info("KLIK");
     // light.position.set(9, 20, 30);
-    light.type = THREE.AmbientLight(color, intensity);
-    // light = new THREE.DirectionalLight(color, intensity)
+    scene.remove(light);
+    light = new THREE.AmbientLight(color, intensity);
+    scene.add(light);
   });
   
   document.getElementById("light2").addEventListener("click", function() {
     // light.position.set(-9, 2, 1);
-    // light = new THREE.AmbientLight(color, intensity)
+    scene.remove(light);
+    light = new THREE.HemisphereLight(color, intensity);
+    scene.add(light);
   });
+
+  document.getElementById("light3").addEventListener("click", function() {
+    // light.position.set(-9, 2, 1);
+    scene.remove(light);
+    light = new THREE.DirectionalLight(color, intensity);
+    scene.add(light);
+  });
+
+  document.getElementById("light4").addEventListener("click", function() {
+    // light.position.set(-9, 2, 1);
+    scene.remove(light);
+    light = new THREE.PointLight(color, intensity);
+    scene.add(light);
+  });
+
+  document.getElementById("light5").addEventListener("click", function() {
+    // light.position.set(-9, 2, 1);
+    scene.remove(light);
+    light = new THREE.SpotLight(color, intensity);
+    scene.add(light);
+  });
+
+
 
   requestAnimationFrame(render);
 }
